@@ -45,21 +45,36 @@ def repeater(s: str, n : int) -> str:
  # при входе в блок with количество отступов (табуляций) увеличивается на 1
  # запись ведётся в файл
 
-class ContextManager:
-    level = 0
-    def __init__(self, filename: str):
-        self.filename = filename
 
-    def __enter__(self):
-        ContextManager.level += 1
-        return self
+'''# class ContextManager:
+#     level = 0
+#     def __init__(self, filename: str):
+#         self.filename = filename
+#
+#     def __enter__(self):
+#         ContextManager.level += 1
+#         return self
+#
+#     def __exit__(self, exc_type, exc_val, exc_tb):
+#         ContextManager.level -= 1
+#
+#     def write(self, text: str):
+#         with open(self.filename, "a") as f:
+#             f.write(f"{'':>{ContextManager}}{text}\n")'''
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        ContextManager.level -= 1
+def countdown(n):
+    while n > 0:
+        print("T-minus " + str(n))
+        n -= 1
+        time.sleep(5)
 
-    def write(self, text: str):
-        with open(self.filename, "a") as f:
-            f.write(f"{'':>{ContextManager}}{text}\n")
+from threading import Thread
+t = Thread(target=countdown, args = (10, ))#, daemon=True) пояснить
+print("Hello!")
+t.start()
+
+# Задача о парихмахере
+# Задача о профессоре и вилках
 
 
 
